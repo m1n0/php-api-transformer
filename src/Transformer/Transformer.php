@@ -18,43 +18,31 @@ abstract class Transformer implements StrategyInterface
     const LINKS_HREF = 'href';
     const LINKS_KEY = 'links';
 
-    /**
-     * @var Mapping[]
-     */
-    protected $mappings = [];
-    /**
-     * @var string
-     */
-    protected $firstUrl = '';
-    /**
-     * @var string
-     */
-    protected $lastUrl = '';
-    /**
-     * @var string
-     */
-    protected $prevUrl = '';
-    /**
-     * @var string
-     */
-    protected $nextUrl = '';
-
-    /**
-     * @var string
-     */
-    protected $selfUrl = '';
-
-    /**
-     * @var array
-     */
-    protected $meta = [];
+    /** @var Mapping[] */
+    protected $mappings;
+    /** @var string */
+    protected $attributesCase;
+    /** @var string */
+    protected $firstUrl;
+    /** @var string */
+    protected $lastUrl;
+    /** @var string */
+    protected $prevUrl;
+    /** @var string */
+    protected $nextUrl;
+    /** @var string */
+    protected $selfUrl;
+    /** @var array */
+    protected $meta;
 
     /**
      * @param Mapper $mapper
+     * @param string $attributesCase
      */
-    public function __construct(Mapper $mapper)
+    public function __construct(Mapper $mapper, string $attributesCase = 'snake_case')
     {
         $this->mappings = $mapper->getClassMap();
+        $this->attributesCase = $attributesCase;
     }
 
     /**
